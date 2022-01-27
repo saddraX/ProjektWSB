@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Data;
+using System.Data.Entity;
 
 namespace ProjektWSB.Models
 {
@@ -13,14 +13,5 @@ namespace ProjektWSB.Models
         public string Name { get; set; }
         public string Type { get; set; }
         public float Price { get; set; }
-
-        public Dish(int id, int userId, string name, string type, float price)
-        {
-            Id = id;
-            UserId = userId;
-            Name = name;
-            Type = type;
-            Price = price;
-        }
     }
 }

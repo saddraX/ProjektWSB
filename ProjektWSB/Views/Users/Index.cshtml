@@ -1,0 +1,21 @@
+﻿@model ProjektWSB.Models.User
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Panel użytkownika</h2>
+
+<p>
+    @Html.ActionLink("Uzupełnij dane restauracji", "Create", "Restaurant")
+</p>
+<p>
+    @Html.ActionLink("Stworz menu", "Create", "Menus")
+</p>
+<p>
+    @Html.ActionLink("Wyloguj", "Logout")
+</p>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

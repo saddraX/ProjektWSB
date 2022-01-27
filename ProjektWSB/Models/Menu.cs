@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 
 namespace ProjektWSB.Models
 {
@@ -11,13 +12,5 @@ namespace ProjektWSB.Models
         public int UserId { get; set; }
         public int RestaurantId { get; set; }
         public int DishId { get; set; }
-
-        public Menu(int id, int userId, int restaurantId, int dishId)
-        {
-            Id = id;
-            UserId = userId;
-            RestaurantId = restaurantId;
-            DishId = dishId;
-        }
     }
 }

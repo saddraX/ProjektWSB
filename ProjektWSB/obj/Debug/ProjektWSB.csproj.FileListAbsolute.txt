@@ -90,3 +90,7 @@ G:\Studia\ProjektWSB\ProjektWSB\obj\Debug\ProjektWSB.csproj.CoreCompileInputs.ca
 G:\Studia\ProjektWSB\ProjektWSB\obj\Debug\ProjektWSB.csproj.CopyComplete
 G:\Studia\ProjektWSB\ProjektWSB\obj\Debug\ProjektWSB.dll
 G:\Studia\ProjektWSB\ProjektWSB\obj\Debug\ProjektWSB.pdb
+G:\Studia\ProjektWSB\ProjektWSB\bin\EntityFramework.dll
+G:\Studia\ProjektWSB\ProjektWSB\bin\EntityFramework.SqlServer.dll
+G:\Studia\ProjektWSB\ProjektWSB\bin\EntityFramework.xml
+G:\Studia\ProjektWSB\ProjektWSB\bin\EntityFramework.SqlServer.xml
