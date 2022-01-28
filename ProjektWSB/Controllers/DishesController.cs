@@ -17,7 +17,12 @@ namespace ProjektWSB.Controllers
         // GET: Dishes
         public ActionResult Index()
         {
-            return View(db.Dishes.ToList());
+            Error.Message = "";
+
+            if (Session["userName"] == null)
+                return RedirectToAction("Login", "Users");
+            else
+                return View(db.Dishes.ToList());
         }
 
         // GET: Dishes/Details/5
@@ -38,7 +43,10 @@ namespace ProjektWSB.Controllers
         // GET: Dishes/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["userName"] == null)
+                return RedirectToAction("Login", "Users");
+            else
+                return View();
         }
 
         // POST: Dishes/Create
@@ -46,17 +54,33 @@ namespace ProjektWSB.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,UserId,Name,Type,Price")] Dish dish)
+        public ActionResult Create([Bind(Include = "Name,Type,Price")] Dish dish)
         {
-            if (ModelState.IsValid)
+            Error.Message = "";
+
+            if (Session["userName"] == null)
+                return RedirectToAction("Login", "Users");
+            else
             {
+                if (ModelState.IsValid)
+                {
+                    var tempDish = db.Dishes.Where(x => x.Name == dish.Name).FirstOrDefault();
+                    if (tempDish == null)
+                    {
+                        dish.UserId = Int32.Parse(Session["userId"].ToString());
+                        db.Dishes.Add(dish);
+                        db.SaveChanges();
+                        return RedirectToAction("Index", "Dishes");
+                    }
+                    else
+                    {
+                        Error.Message = "Nie dodano";
+                        return RedirectToAction("Create", "Dishes");
+                    }
+                }
 
-                db.Dishes.Add(dish);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return View(dish);
             }
-
-            return View(dish);
         }
 
         // GET: Dishes/Edit/5

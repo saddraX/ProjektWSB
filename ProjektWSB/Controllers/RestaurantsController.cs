@@ -17,6 +17,7 @@ namespace ProjektWSB.Controllers
         // GET: Restaurants
         public ActionResult Index()
         {
+            Error.Message = "";
             return View(db.Restaurants.ToList());
         }
 
@@ -38,7 +39,10 @@ namespace ProjektWSB.Controllers
         // GET: Restaurants/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["userName"] == null)
+                return RedirectToAction("Login", "Users");
+            else
+                return View();
         }
 
         // POST: Restaurants/Create

@@ -94,3 +94,9 @@ G:\Studia\ProjektWSB\ProjektWSB\bin\EntityFramework.dll
 G:\Studia\ProjektWSB\ProjektWSB\bin\EntityFramework.SqlServer.dll
 G:\Studia\ProjektWSB\ProjektWSB\bin\EntityFramework.xml
 G:\Studia\ProjektWSB\ProjektWSB\bin\EntityFramework.SqlServer.xml
+G:\Studia\ProjektWSB\ProjektWSB\bin\PdfSharp.Charting.dll
+G:\Studia\ProjektWSB\ProjektWSB\bin\PdfSharp.dll
+G:\Studia\ProjektWSB\ProjektWSB\bin\PdfSharp.xml
+G:\Studia\ProjektWSB\ProjektWSB\bin\PdfSharp.Charting.xml
+G:\Studia\ProjektWSB\ProjektWSB\bin\de\PdfSharp.resources.dll
+G:\Studia\ProjektWSB\ProjektWSB\bin\de\PdfSharp.Charting.resources.dll

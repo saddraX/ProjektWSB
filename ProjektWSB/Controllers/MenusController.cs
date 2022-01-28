@@ -17,7 +17,50 @@ namespace ProjektWSB.Controllers
         // GET: Menus
         public ActionResult Index()
         {
-            return View(db.Menus.ToList());
+            Error.Message = "";
+
+            if (Session["userName"] == null)
+                return RedirectToAction("Login", "Users");
+            else
+            {
+                //var menus = db.Menus.Select(x => x.DishId).Distinct();
+                //var dishTypes = db.Dishes.Select(x => x.Type).Distinct();
+
+                int userId = Int32.Parse(Session["userId"].ToString());
+
+                //var menus = db.Menus.Select(x => x.DishId).ToList();
+                ////var menus = db.Menus.Where(x => x.UserId == userId);
+
+                //var dbDishes = db.Dishes.OrderBy(x => x.Type);
+                //var dishes = new List<Dish>();
+                //dishes.Clear();
+
+                //foreach (Dish d in dbDishes)
+                //{
+                //    if (menus.Contains(d.Id)) dishes.Add(d);
+                //}
+
+                //ViewBag.Dishes = dishes;
+
+                //var query = db.Menus.GroupJoin(db.Dishes,
+                //    x => x.DishId,
+                //    y => y.Id,
+                //    (x, xd) => new
+                //    {
+                        
+                //    }
+                //        );
+
+                var menu = db.Menus.Where(x => x.UserId == userId).ToList();
+                foreach (Menu m in menu)
+                {
+                    m.Dish = db.Dishes.Where(x => x.Id == m.DishId).FirstOrDefault();
+                }
+
+                menu.Sort((p, q) => p.Dish.Type.CompareTo(q.Dish.Type));
+
+                return View(menu.ToList());
+            }
         }
 
         // GET: Menus/Details/5
@@ -38,7 +81,17 @@ namespace ProjektWSB.Controllers
         // GET: Menus/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["userName"] == null)
+                return RedirectToAction("Login", "Users");
+            else
+            {
+                var Dishes = db.Dishes.Distinct();
+
+
+                ViewBag.DishesList = new SelectList(Dishes, "Id", "Name");
+
+                return View();
+            }
         }
 
         // POST: Menus/Create
@@ -46,13 +99,28 @@ namespace ProjektWSB.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,UserId,RestaurantId,DishId")] Menu menu)
+        public ActionResult Create([Bind(Include = "DishId")] Menu menu)
         {
+            Error.Message = "";
+
             if (ModelState.IsValid)
             {
-                db.Menus.Add(menu);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                int userId = Int32.Parse(Session["userId"].ToString());
+
+                var tempMenu = db.Menus.Where(x => x.DishId == menu.DishId && x.UserId == userId).FirstOrDefault();
+                if (tempMenu == null)
+                {
+                    menu.UserId = userId;
+                    menu.RestaurantId = Int32.Parse(Session["userId"].ToString());
+                    db.Menus.Add(menu);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Menus");
+                }
+                else
+                {
+                    Error.Message = "Danie jest już w Menu!";
+                    return RedirectToAction("Create", "Menus");
+                }
             }
 
             return View(menu);

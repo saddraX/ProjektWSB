@@ -7,39 +7,59 @@
 <h2>Menu</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Dodaj danie do Menu", "Create")
 </p>
-<table class="table">
+
+<p>
+    @Html.ActionLink("Lista wszystkich dań", "Index", "Dishes")
+</p>
+
+<table class="table" style="text-align:center;">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.UserId)
+        <th style="text-align:center;">
+            Nazwa
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RestaurantId)
+        <th style="text-align:center;">
+            Typ
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DishId)
+        <th style="text-align:center;">
+            Cena
         </th>
         <th></th>
     </tr>
+    @{string currentType = "";}
+    @{string oldType = "";}
+    @foreach (var item in Model)
+    {
+        if (item.Dish == null) { break; }
+        currentType = item.Dish.Type;
+        if (oldType != currentType)
+        {
+            oldType = currentType;
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RestaurantId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DishId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+            <tr>
+                <th colspan="4" style="background-color: lightgrey; text-align:center; font-size:medium;">
+                    @currentType
+                </th>
+            </tr>
+        }
+        
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dish.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dish.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dish.Price) zł
+                </td>
+                <td>
+                    @Html.ActionLink("Usuń", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        
+        oldType = item.Dish.Type;
+    }
 
 </table>

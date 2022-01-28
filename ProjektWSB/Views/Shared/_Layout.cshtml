@@ -28,6 +28,10 @@
 
             </div>
             <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Menu", "Index", "Menus")</li>
+                    <li>@Html.ActionLink("Dania", "Index", "Dishes")</li>
+                </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (HttpContext.Current.Session["userName"] == null)
                     {
@@ -36,7 +40,7 @@
                     }
                     else
                     {
-                        <li>@Html.ActionLink("Witaj, " + HttpContext.Current.Session["userName"], "Index", "Users")</li>
+                        <li>@Html.ActionLink("Witaj, " + HttpContext.Current.Session["userId"] + HttpContext.Current.Session["userName"], "Index", "Users")</li>
                     }
                 </ul>
             </div>

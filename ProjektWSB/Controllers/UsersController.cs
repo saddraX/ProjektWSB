@@ -71,10 +71,17 @@ namespace ProjektWSB.Controllers
             }
             else
             {
-                Session["userId"] = user.Id;
-                Session["userName"] = user.Login;
-                return RedirectToAction("Index", "Menus");
+                Session["userId"] = userDetails.Id;
+                Session["userName"] = userDetails.Login;
+                return RedirectToAction("Index", "Users");
             }
+        }
+
+        public ActionResult Logout()
+        {
+            Error.Message = "";
+            Session.Clear();
+            return RedirectToAction("Login", "Users");
         }
     }
 }
