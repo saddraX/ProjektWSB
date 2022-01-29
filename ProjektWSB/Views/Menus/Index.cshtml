@@ -19,9 +19,9 @@
         <th style="text-align:center;">
             Nazwa
         </th>
-        <th style="text-align:center;">
-            Typ
-        </th>
+        @*<th style="text-align:center;">
+                Typ
+            </th>*@
         <th style="text-align:center;">
             Cena
         </th>
@@ -43,23 +43,30 @@
                 </th>
             </tr>
         }
-        
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Dish.Name)
-                </td>
-                <td>
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dish.Name)
+            </td>
+            @*<td>
                     @Html.DisplayFor(modelItem => item.Dish.Type)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Dish.Price) zł
-                </td>
-                <td>
-                    @Html.ActionLink("Usuń", "Delete", new { id = item.Id })
-                </td>
-            </tr>
-        
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Dish.Price) zł
+            </td>
+            <td>
+                @Html.ActionLink("Usuń", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+
         oldType = item.Dish.Type;
     }
-
 </table>
+
+
+@if (Model.ToList().Count > 0)
+{
+    <p>
+        @Html.ActionLink("Generuj Menu", "Index", "PDF")
+    </p>
+}
