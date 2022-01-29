@@ -99,3 +99,4 @@ G:\Studia\ProjektWSB\ProjektWSB\bin\PdfSharp.xml
 G:\Studia\ProjektWSB\ProjektWSB\bin\PdfSharp.Charting.xml
 G:\Studia\ProjektWSB\ProjektWSB\bin\de\PdfSharp.resources.dll
 G:\Studia\ProjektWSB\ProjektWSB\bin\de\PdfSharp.Charting.resources.dll
+G:\Studia\ProjektWSB\ProjektWSB\obj\Debug\ProjektWSB.csprojAssemblyReference.cache

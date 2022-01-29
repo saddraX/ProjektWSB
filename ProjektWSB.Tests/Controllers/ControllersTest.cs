@@ -21,7 +21,7 @@ namespace ProjektWSB.Tests.Controllers
         }
 
         [TestMethod]
-        public void DishesDetailsTest() // zwracanie null dla /Dishes/Details
+        public void DishesDetailsTest() // zwracanie szczegółów dania
         {
             var controller = new DishesController();
             var result = controller.Details(5) as ViewResult;
