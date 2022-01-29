@@ -95,7 +95,6 @@ namespace ProjektWSB.Controllers
                     {
                         oldType = currentType;
 
-                        //graph.DrawRectangle(rect_style1, marginLeft + interLine_X_1, dist_Y2 + marginTop, el1_width + el2_width, rect_height);
                         tf.DrawString(
                             menu[i].Dish.Type,
                             fontDishType,
@@ -107,23 +106,6 @@ namespace ProjektWSB.Controllers
                     }
                     else
                     {
-                        //if (i % 2 == 1)
-                        //{
-                        //  graph.DrawRectangle(TextBackgroundBrush, marginLeft, lineY - 2 + marginTop, pdfPage.Width - marginLeft - marginRight, lineHeight - 2);
-                        //}
-
-                        ////ELEMENT 1 - SMALL 80
-                        //graph.DrawRectangle(rect_style1, marginLeft, marginTop + dist_Y2, el1_width, rect_height);
-                        //tf.DrawString(
-
-                        //    "text1",
-                        //    fontParagraph,
-                        //    XBrushes.Black,
-                        //    new XRect(marginLeft, marginTop + dist_Y, el1_width, el_height),
-                        //    format);
-
-                        //ELEMENT 2 - BIG 380
-                        //graph.DrawRectangle(rect_style1, marginLeft * 2 + interLine_X_1, dist_Y2 + marginTop, el2_width, rect_height);
                         tf.DrawString(
                             menu[i].Dish.Name,
                             fontDish,
@@ -131,10 +113,6 @@ namespace ProjektWSB.Controllers
                             new XRect(marginLeft * 2 + interLine_X_1, marginTop + dist_Y, el2_width, el_height),
                             format);
 
-
-                        //ELEMENT 3 - SMALL 80
-
-                        //graph.DrawRectangle(rect_style1, marginLeft + offSetX_2 + interLine_X_2, dist_Y2 + marginTop, el1_width, rect_height);
                         tf.DrawString(
                             menu[i].Dish.Price.ToString() + " zł",
                             fontDish,
@@ -143,12 +121,6 @@ namespace ProjektWSB.Controllers
                             format);
                     }
                 }
-
-                //// Save the document...
-                //const string filename = "HelloWorld.pdf";
-                //document.Save(filename);
-                //// ...and start a viewer.
-                //Process.Start(filename);
 
                 using (MemoryStream ms = new MemoryStream())
                 {
