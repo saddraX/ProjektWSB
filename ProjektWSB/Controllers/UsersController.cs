@@ -40,7 +40,11 @@ namespace ProjektWSB.Controllers
                 if (tempUser == null)
                 {
                     db.Users.Add(user);
-                    db.SaveChanges();
+                    try
+                    {
+                        db.SaveChanges();
+                    }
+                    catch { }
                     return RedirectToAction("Login");
                 }
                 else

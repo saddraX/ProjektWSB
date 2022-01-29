@@ -85,7 +85,6 @@ G:\Studia\ProjektWSB\ProjektWSB\bin\pl\System.Web.WebPages.Razor.resources.dll
 G:\Studia\ProjektWSB\ProjektWSB\bin\pl\System.Net.Http.Formatting.resources.dll
 G:\Studia\ProjektWSB\ProjektWSB\bin\pl\System.Web.Http.resources.dll
 G:\Studia\ProjektWSB\ProjektWSB\bin\pl\System.Web.Http.WebHost.resources.dll
-G:\Studia\ProjektWSB\ProjektWSB\obj\Debug\ProjektWSB.csprojAssemblyReference.cache
 G:\Studia\ProjektWSB\ProjektWSB\obj\Debug\ProjektWSB.csproj.CoreCompileInputs.cache
 G:\Studia\ProjektWSB\ProjektWSB\obj\Debug\ProjektWSB.csproj.CopyComplete
 G:\Studia\ProjektWSB\ProjektWSB\obj\Debug\ProjektWSB.dll

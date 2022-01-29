@@ -18,49 +18,44 @@ namespace ProjektWSB.Controllers
         public ActionResult Index()
         {
             Error.Message = "";
+            //var menus = db.Menus.Select(x => x.DishId).Distinct();
+            //var dishTypes = db.Dishes.Select(x => x.Type).Distinct();
 
-            if (Session["userName"] == null)
-                return RedirectToAction("Login", "Users");
-            else
+            int userId = Convert.ToInt32(Session["userId"]);
+
+            //var menus = db.Menus.Select(x => x.DishId).ToList();
+            ////var menus = db.Menus.Where(x => x.UserId == userId);
+
+            //var dbDishes = db.Dishes.OrderBy(x => x.Type);
+            //var dishes = new List<Dish>();
+            //dishes.Clear();
+
+            //foreach (Dish d in dbDishes)
+            //{
+            //    if (menus.Contains(d.Id)) dishes.Add(d);
+            //}
+
+            //ViewBag.Dishes = dishes;
+
+            //var query = db.Menus.GroupJoin(db.Dishes,
+            //    x => x.DishId,
+            //    y => y.Id,
+            //    (x, xd) => new
+            //    {
+
+            //    }
+            //        );
+
+            var menu = db.Menus.Where(x => x.UserId == userId).ToList();
+            foreach (Menu m in menu)
             {
-                //var menus = db.Menus.Select(x => x.DishId).Distinct();
-                //var dishTypes = db.Dishes.Select(x => x.Type).Distinct();
-
-                int userId = Int32.Parse(Session["userId"].ToString());
-
-                //var menus = db.Menus.Select(x => x.DishId).ToList();
-                ////var menus = db.Menus.Where(x => x.UserId == userId);
-
-                //var dbDishes = db.Dishes.OrderBy(x => x.Type);
-                //var dishes = new List<Dish>();
-                //dishes.Clear();
-
-                //foreach (Dish d in dbDishes)
-                //{
-                //    if (menus.Contains(d.Id)) dishes.Add(d);
-                //}
-
-                //ViewBag.Dishes = dishes;
-
-                //var query = db.Menus.GroupJoin(db.Dishes,
-                //    x => x.DishId,
-                //    y => y.Id,
-                //    (x, xd) => new
-                //    {
-                        
-                //    }
-                //        );
-
-                var menu = db.Menus.Where(x => x.UserId == userId).ToList();
-                foreach (Menu m in menu)
-                {
-                    m.Dish = db.Dishes.Where(x => x.Id == m.DishId).FirstOrDefault();
-                }
-
-                menu.Sort((p, q) => p.Dish.Type.CompareTo(q.Dish.Type));
-
-                return View(menu.ToList());
+                m.Dish = db.Dishes.Where(x => x.Id == m.DishId).FirstOrDefault();
             }
+
+            menu.Sort((p, q) => p.Dish.Type.CompareTo(q.Dish.Type));
+
+            return View(menu.ToList());
+
         }
 
         // GET: Menus/Details/5
@@ -105,13 +100,13 @@ namespace ProjektWSB.Controllers
 
             if (ModelState.IsValid)
             {
-                int userId = Int32.Parse(Session["userId"].ToString());
+                int userId = Convert.ToInt32(Session["userId"]);
 
                 var tempMenu = db.Menus.Where(x => x.DishId == menu.DishId && x.UserId == userId).FirstOrDefault();
                 if (tempMenu == null)
                 {
                     menu.UserId = userId;
-                    menu.RestaurantId = Int32.Parse(Session["userId"].ToString());
+                    menu.RestaurantId = Convert.ToInt32(Session["userId"]);
                     db.Menus.Add(menu);
                     db.SaveChanges();
                     return RedirectToAction("Index", "Menus");

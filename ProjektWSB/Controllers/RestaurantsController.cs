@@ -39,10 +39,7 @@ namespace ProjektWSB.Controllers
         // GET: Restaurants/Create
         public ActionResult Create()
         {
-            if (Session["userName"] == null)
-                return RedirectToAction("Login", "Users");
-            else
-                return View();
+            return View();
         }
 
         // POST: Restaurants/Create

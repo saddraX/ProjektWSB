@@ -54,3 +54,8 @@ G:\Studia\ProjektWSB\ProjektWSB.Tests\obj\Debug\ProjektWSB.Tests.csproj.CoreComp
 G:\Studia\ProjektWSB\ProjektWSB.Tests\obj\Debug\ProjektWSB.Tests.csproj.CopyComplete
 G:\Studia\ProjektWSB\ProjektWSB.Tests\obj\Debug\ProjektWSB.Tests.dll
 G:\Studia\ProjektWSB\ProjektWSB.Tests\obj\Debug\ProjektWSB.Tests.pdb
+G:\Studia\ProjektWSB\ProjektWSB.Tests\bin\Debug\PdfSharp.dll
+G:\Studia\ProjektWSB\ProjektWSB.Tests\bin\Debug\PdfSharp.xml
+G:\Studia\ProjektWSB\ProjektWSB.Tests\bin\Debug\de\PdfSharp.resources.dll
+G:\Studia\ProjektWSB\ProjektWSB.Tests\bin\Debug\EntityFramework.SqlServer.dll
+G:\Studia\ProjektWSB\ProjektWSB.Tests\bin\Debug\EntityFramework.SqlServer.xml

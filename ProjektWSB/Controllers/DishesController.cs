@@ -19,10 +19,7 @@ namespace ProjektWSB.Controllers
         {
             Error.Message = "";
 
-            if (Session["userName"] == null)
-                return RedirectToAction("Login", "Users");
-            else
-                return View(db.Dishes.ToList());
+            return View(db.Dishes.ToList());
         }
 
         // GET: Dishes/Details/5
@@ -43,10 +40,7 @@ namespace ProjektWSB.Controllers
         // GET: Dishes/Create
         public ActionResult Create()
         {
-            if (Session["userName"] == null)
-                return RedirectToAction("Login", "Users");
-            else
-                return View();
+            return View();
         }
 
         // POST: Dishes/Create
@@ -58,29 +52,24 @@ namespace ProjektWSB.Controllers
         {
             Error.Message = "";
 
-            if (Session["userName"] == null)
-                return RedirectToAction("Login", "Users");
-            else
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
+                var tempDish = db.Dishes.Where(x => x.Name == dish.Name).FirstOrDefault();
+                if (tempDish == null)
                 {
-                    var tempDish = db.Dishes.Where(x => x.Name == dish.Name).FirstOrDefault();
-                    if (tempDish == null)
-                    {
-                        dish.UserId = Int32.Parse(Session["userId"].ToString());
-                        db.Dishes.Add(dish);
-                        db.SaveChanges();
-                        return RedirectToAction("Index", "Dishes");
-                    }
-                    else
-                    {
-                        Error.Message = "Nie dodano";
-                        return RedirectToAction("Create", "Dishes");
-                    }
+                    dish.UserId = Convert.ToInt32((Session["userId"]));
+                    db.Dishes.Add(dish);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Dishes");
                 }
-
-                return View(dish);
+                else
+                {
+                    Error.Message = "Nie dodano";
+                    return RedirectToAction("Create", "Dishes");
+                }
             }
+
+            return View(dish);
         }
 
         // GET: Dishes/Edit/5
