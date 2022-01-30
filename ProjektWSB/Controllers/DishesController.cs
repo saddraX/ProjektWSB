@@ -57,14 +57,22 @@ namespace ProjektWSB.Controllers
                 var tempDish = db.Dishes.Where(x => x.Name == dish.Name).FirstOrDefault();
                 if (tempDish == null)
                 {
-                    dish.UserId = Convert.ToInt32((Session["userId"]));
-                    db.Dishes.Add(dish);
-                    db.SaveChanges();
-                    return RedirectToAction("Index", "Dishes");
+                    if (dish.Price > 0)
+                    {
+                        dish.UserId = Convert.ToInt32((Session["userId"]));
+                        db.Dishes.Add(dish);
+                        db.SaveChanges();
+                        return RedirectToAction("Index", "Dishes");
+                    }
+                    else
+                    {
+                        Error.Message = "Nieodpowiednia cena!";
+                        return RedirectToAction("Create", "Dishes");
+                    }
                 }
                 else
                 {
-                    Error.Message = "Nie dodano";
+                    Error.Message = "Danie już istnieje!";
                     return RedirectToAction("Create", "Dishes");
                 }
             }
@@ -96,9 +104,17 @@ namespace ProjektWSB.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(dish).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (dish.Price > 0)
+                {
+                    db.Entry(dish).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    Error.Message = "Nieodpowiednia cena!";
+                    return RedirectToAction("Edit", "Dishes", dish.Id);
+                }
             }
             return View(dish);
         }

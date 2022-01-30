@@ -1,7 +1,7 @@
 ﻿@model ProjektWSB.Models.Dish
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edytuj danie";
 }
 
 <h2>Edytuj danie</h2>
@@ -47,6 +47,10 @@
         </div>
     </div>
 }
+
+    <p style="color:red;">
+        @ProjektWSB.Models.Error.Message
+    </p>
 
 <div>
     @Html.ActionLink("Powrót do listy dań", "Index")
